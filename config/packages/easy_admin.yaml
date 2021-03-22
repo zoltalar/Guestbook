@@ -1,5 +1,15 @@
 easy_admin:
     entities:
-        # List the entity class name you want to manage
-        - App\Entity\Conference
-        - App\Entity\Comment
+        Conference:
+            class: App\Entity\Conference
+        Comment:
+            class: App\Entity\Comment
+            list:
+                fields:
+                    - author
+                    - { property: 'email', type: 'email' }
+                    - { property: 'photoFilename', type: 'image', 'base_path': '/uploads/photos', label: 'Photo' }
+                    - state
+                    - { property: 'cratedAt', type: 'datetime' }
+                sort: ['createdAt', 'ASC']
+                filters: ['conference']
